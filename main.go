@@ -18,7 +18,14 @@ func webhookReceiver(rw http.ResponseWriter, rq *http.Request) {
 		panic(err)
 	}
 
-	fmt.Println(data)
+	fmt.Println("Status: ", data.Status)
+	fmt.Println("Alerts:")
+
+	for _, alert := range data.Alerts {
+		fmt.Println("Status: ", alert.Status)
+		fmt.Println("Summary: ", alert.Annotations["summary"])
+		fmt.Println("Description: ", alert.Annotations["description"])
+	}
 }
 
 func main() {
